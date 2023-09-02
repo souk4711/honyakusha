@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"runtime"
 	"time"
+
+	"github.com/souk4711/honyakusha/internal/conf"
 )
 
 const (
@@ -13,7 +15,8 @@ const (
 		"Go Version:  %s\n" +
 		"Git Commit:  %s\n" +
 		"Built:       %s\n" +
-		"OS/Arch:     %s/%s\n"
+		"OS/Arch:     %s/%s\n" +
+		"ConfigFile:  %s\n"
 )
 
 var (
@@ -50,6 +53,7 @@ func (v *Version) Info() string {
 		v.GitCommit,
 		built,
 		v.OS, v.ARCH,
+		conf.FilePath(),
 	)
 }
 
