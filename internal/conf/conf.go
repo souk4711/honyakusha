@@ -8,20 +8,20 @@ import (
 )
 
 type Conf struct {
-	Translate   Translate   `toml:"translate"`
-	Translators Translators `toml:"translators"`
+	Translate   ConfTranslate   `toml:"translate"`
+	Translators ConfTranslators `toml:"translators"`
 }
 
-type Translate struct {
+type ConfTranslate struct {
 	From string `toml:"from"`
 	To   string `toml:"to"`
 }
 
-type Translators struct {
-	DeeplAPI Translator `toml:"deepl-api"`
+type ConfTranslators struct {
+	DeeplAPI ConfTranslator `toml:"deepl-api"`
 }
 
-type Translator struct {
+type ConfTranslator struct {
 	Enabled bool   `toml:"enabled"`
 	Proxy   string `toml:"proxy"`
 	URI     string `toml:"uri"`

@@ -6,7 +6,7 @@ import (
 	"github.com/souk4711/honyakusha/internal/res"
 )
 
-func buildResultFromResp(resp *resty.Response) res.Translator {
+func buildResultFromResp(resp *resty.Response) res.ResTranslator {
 	println(resp)
-	return res.NewTranslatorSuccess()
+	return res.NewResTranslatorSuccess()
 }

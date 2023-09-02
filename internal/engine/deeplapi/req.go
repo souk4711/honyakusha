@@ -13,7 +13,7 @@ type Req struct {
 	TargetLang string   `json:"target_lang"`
 }
 
-func buildReqURL(conf conf.Translator) string {
+func buildReqURL(conf conf.ConfTranslator) string {
 	if conf.URI == "" {
 		return "https://api-free.deepl.com/v2/translate"
 	} else {
@@ -34,6 +34,8 @@ func buildReqBody(text string, from string, to string) Req {
 func buildReqBodySourceLang(from string) string {
 	frLang := lang.Query(from)
 	code := frLang.Code
+	switch code {
+	}
 	if code == "" {
 		return ""
 	} else {

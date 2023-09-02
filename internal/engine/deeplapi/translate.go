@@ -7,7 +7,7 @@ import (
 	"github.com/souk4711/honyakusha/internal/res"
 )
 
-func TranslateText(text string, from string, to string, conf conf.Translator) res.Translator {
+func TranslateText(text string, from string, to string, conf conf.ConfTranslator) res.ResTranslator {
 	client := resty.New()
 
 	if conf.Proxy != "" {
@@ -24,7 +24,7 @@ func TranslateText(text string, from string, to string, conf conf.Translator) re
 		SetBody(buildReqBody(text, from, to)).
 		Post(buildReqURL(conf))
 	if err != nil {
-		return res.NewTranslatorFailure(err.Error())
+		return res.NewResTranslatorFailure(err.Error())
 	}
 
 	return buildResultFromResp(resp)

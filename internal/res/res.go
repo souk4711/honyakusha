@@ -1,27 +1,23 @@
 package res
 
 type Res struct {
-	Translators Translators
+	Translators []ResTranslator `json:"translators"`
 }
 
-type Translators struct {
-	DeeplAPI Translator
+type ResTranslator struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
 }
 
-type Translator struct {
-	Code    int
-	Message string
-}
-
-func NewTranslatorSuccess() Translator {
-	return Translator{
+func NewResTranslatorSuccess() ResTranslator {
+	return ResTranslator{
 		Code:    0,
 		Message: "",
 	}
 }
 
-func NewTranslatorFailure(message string) Translator {
-	return Translator{
+func NewResTranslatorFailure(message string) ResTranslator {
+	return ResTranslator{
 		Code:    1,
 		Message: message,
 	}
