@@ -1,8 +1,7 @@
 package cmd
 
 import (
-	"fmt"
-	"os"
+	"log"
 	"strconv"
 
 	"github.com/spf13/cobra"
@@ -15,8 +14,7 @@ func Execute(gitCommit string, builtTime string) {
 
 	var command = newHonyakushaCommand()
 	if err := command.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		log.Fatal(err)
 	}
 }
 
