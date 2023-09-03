@@ -1,4 +1,4 @@
-package deeplapi
+package google
 
 import (
 	resty "github.com/go-resty/resty/v2"
@@ -16,11 +16,6 @@ func buildClient(conf conf.ConfTranslator) *resty.Client {
 	client := resty.New()
 	if conf.Proxy != "" {
 		client.SetProxy(conf.Proxy)
-	}
-	if conf.ApiKey != "" {
-		client.
-			SetAuthScheme("DeepL-Auth-Key").
-			SetAuthToken(conf.ApiKey)
 	}
 	return client
 }

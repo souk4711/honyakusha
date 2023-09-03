@@ -18,6 +18,7 @@ type ConfTranslate struct {
 }
 
 type ConfTranslators struct {
+	Google            ConfTranslator `toml:"google"`
 	DeeplAPI          ConfTranslator `toml:"deepl-api"`
 	LibreTranslateAPI ConfTranslator `toml:"libretranslate-api"`
 }

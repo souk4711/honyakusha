@@ -21,7 +21,7 @@ func buildReqURL(conf conf.ConfTranslator) string {
 	}
 }
 
-func buildReqBody(text string, source string, target string) Req {
+func buildReqBody(text string, source string, target string, conf conf.ConfTranslator) Req {
 	source = buildReqBodySource(source)
 	target = buildReqBodyTarget(target)
 	if source == "" {
