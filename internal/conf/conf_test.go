@@ -12,23 +12,21 @@ import (
 )
 
 func TestFilePath(t *testing.T) {
+	wd, _ := os.Getwd()
 	xdgConfPath, _ := filepath.Abs(filepath.Join(xdg.ConfigHome, "honyakusha.toml"))
-	cwdConfPath, _ := filepath.Abs("honyakusha.toml")
-
-	_, _ = os.Create(xdgConfPath)
-	_, _ = os.Create(cwdConfPath)
-	defer func() { os.Remove(cwdConfPath) }()
-
-	f := conf.FilePath()
-	assert.Equal(t, cwdConfPath, f)
-
-	_ = os.Remove(cwdConfPath)
-	f = conf.FilePath()
-	assert.Equal(t, xdgConfPath, f)
+	cwdConfPath, _ := filepath.Abs(filepath.Join(wd, "honyakusha.toml"))
 
 	if _, ok := os.LookupEnv("GITHUB_WORKSPACE"); ok {
-		_ = os.Remove(xdgConfPath)
-		f = conf.FilePath()
+		f := conf.FilePath()
 		assert.Equal(t, "", f)
 	}
+
+	_, _ = os.Create(xdgConfPath)
+	f := conf.FilePath()
+	assert.Equal(t, xdgConfPath, f)
+
+	_, _ = os.Create(cwdConfPath)
+	defer func() { os.Remove(cwdConfPath) }()
+	f = conf.FilePath()
+	assert.Equal(t, cwdConfPath, f)
 }
