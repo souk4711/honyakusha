@@ -8,9 +8,9 @@ import (
 )
 
 type Req struct {
-	Text       []string `json:"text"`
-	SourceLang string   `json:"source_lang"`
-	TargetLang string   `json:"target_lang"`
+	Text   []string `json:"text"`
+	Source string   `json:"source_lang"`
+	Target string   `json:"target_lang"`
 }
 
 func buildReqURL(conf conf.ConfTranslator) string {
@@ -22,28 +22,33 @@ func buildReqURL(conf conf.ConfTranslator) string {
 }
 
 func buildReqBody(text string, from string, to string) Req {
-	from = buildReqBodySourceLang(from)
-	to = buildReqBodyTargetLang(to)
-	if from == "" { // autodetect
-		return Req{Text: []string{text}, TargetLang: to}
+	from = buildReqBodySource(from)
+	to = buildReqBodyTarget(to)
+	if from == "" {
+		return Req{
+			Text:   []string{text},
+			Target: to,
+		}
 	} else {
-		return Req{Text: []string{text}, SourceLang: from, TargetLang: to}
+		return Req{
+			Text:   []string{text},
+			Source: from,
+			Target: to,
+		}
 	}
 }
 
-func buildReqBodySourceLang(from string) string {
+func buildReqBodySource(from string) string {
 	frLang := lang.Query(from)
 	code := frLang.Code
-	switch code {
-	}
 	if code == "" {
 		return ""
 	} else {
-		return strings.ToUpper(code[0:2])
+		return strings.ToUpper(frLang.Macro())
 	}
 }
 
-func buildReqBodyTargetLang(to string) string {
+func buildReqBodyTarget(to string) string {
 	toLang := lang.Query(to)
 	code := toLang.Code
 	return strings.ToUpper(code)

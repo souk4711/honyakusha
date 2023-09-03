@@ -1,5 +1,7 @@
 package lang
 
+import "strings"
+
 var (
 	// https://github.com/soimort/translate-shell/wiki/Languages
 	data = map[string]Lang{
@@ -180,6 +182,14 @@ type Lang struct {
 	Code       string
 	Name       string
 	LocaleName string
+}
+
+func (l *Lang) Macro() string {
+	if idx := strings.Index(l.Code, "-"); idx == -1 {
+		return l.Code
+	} else {
+		return l.Code[0:idx]
+	}
 }
 
 func Query(code string) Lang {

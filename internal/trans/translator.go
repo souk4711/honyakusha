@@ -3,6 +3,7 @@ package trans
 import (
 	"github.com/souk4711/honyakusha/internal/conf"
 	"github.com/souk4711/honyakusha/internal/engine/deeplapi"
+	"github.com/souk4711/honyakusha/internal/engine/libretranslateapi"
 	"github.com/souk4711/honyakusha/internal/res"
 )
 
@@ -15,6 +16,8 @@ func (t *Translator) translateText(text string, from string, to string) res.ResT
 	switch t.Code {
 	case "deepl-api":
 		return deeplapi.TranslateText(text, from, to, t.Conf)
+	case "libretranslate-api":
+		return libretranslateapi.TranslateText(text, from, to, t.Conf)
 	default:
 		return res.NewResTranslatorFailure("")
 	}
@@ -24,6 +27,9 @@ func availableTranslators(c conf.ConfTranslators) []Translator {
 	arr := []Translator{}
 	if c.DeeplAPI.Enabled {
 		arr = append(arr, Translator{Code: "deepl-api", Conf: c.DeeplAPI})
+	}
+	if c.LibreTranslateAPI.Enabled {
+		arr = append(arr, Translator{Code: "libretranslate-api", Conf: c.LibreTranslateAPI})
 	}
 	return arr
 }

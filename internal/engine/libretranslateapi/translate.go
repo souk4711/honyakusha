@@ -1,4 +1,4 @@
-package deeplapi
+package libretranslateapi
 
 import (
 	resty "github.com/go-resty/resty/v2"
@@ -14,14 +14,8 @@ func TranslateText(text string, from string, to string, conf conf.ConfTranslator
 		client.SetProxy(conf.Proxy)
 	}
 
-	if conf.ApiKey != "" {
-		client.
-			SetAuthScheme("DeepL-Auth-Key").
-			SetAuthToken(conf.ApiKey)
-	}
-
 	resp, err := client.R().
-		SetBody(buildReqBody(text, from, to)).
+		SetBody(buildReqBody(text, from, to, conf)).
 		Post(buildReqURL(conf))
 	if err != nil {
 		return res.NewResTranslatorFailure(err.Error())

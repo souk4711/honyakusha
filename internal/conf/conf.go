@@ -18,14 +18,15 @@ type ConfTranslate struct {
 }
 
 type ConfTranslators struct {
-	DeeplAPI ConfTranslator `toml:"deepl-api"`
+	DeeplAPI          ConfTranslator `toml:"deepl-api"`
+	LibreTranslateAPI ConfTranslator `toml:"libretranslate-api"`
 }
 
 type ConfTranslator struct {
 	Enabled bool   `toml:"enabled"`
 	Proxy   string `toml:"proxy"`
 	URI     string `toml:"uri"`
-	AuthKey string `toml:"auth-key"`
+	ApiKey  string `toml:"api-key"`
 }
 
 func FilePath() string {
