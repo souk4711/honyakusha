@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/spf13/cobra"
 
@@ -15,7 +16,7 @@ func newTransCommand() *cobra.Command {
 		Short: "Translate text",
 		Run: func(cmd *cobra.Command, args []string) {
 			c := conf.Load()
-			res := trans.Translate("Hello, World!", c)
+			res := trans.Translate(strings.Join(args, " "), c)
 			fmt.Print(trans.Format(res, "json"))
 		},
 	}
