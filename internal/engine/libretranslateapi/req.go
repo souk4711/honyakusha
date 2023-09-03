@@ -5,14 +5,6 @@ import (
 	"github.com/souk4711/honyakusha/internal/lang"
 )
 
-type Req struct {
-	Text   string `json:"q"`
-	Source string `json:"source"`
-	Target string `json:"target"`
-	Format string `json:"format"`
-	ApiKey string `json:"api_key"`
-}
-
 func buildReqURL(conf conf.ConfTranslator) string {
 	if conf.URI == "" {
 		return "https://libretranslate.com/translate"
@@ -21,13 +13,13 @@ func buildReqURL(conf conf.ConfTranslator) string {
 	}
 }
 
-func buildReqBody(text string, from string, to string, conf conf.ConfTranslator) Req {
-	return Req{
-		Text:   text,
-		Source: buildReqBodySource(from),
-		Target: buildReqBodyTarget(to),
-		Format: "text",
-		ApiKey: conf.ApiKey,
+func buildReqBody(text string, from string, to string, conf conf.ConfTranslator) map[string]string {
+	return map[string]string{
+		"q":       text,
+		"source":  buildReqBodySource(from),
+		"target":  buildReqBodyTarget(to),
+		"format":  "text",
+		"api_key": conf.ApiKey,
 	}
 }
 

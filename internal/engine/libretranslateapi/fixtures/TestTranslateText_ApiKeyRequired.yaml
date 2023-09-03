@@ -1,0 +1,79 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 140
+        transfer_encoding: []
+        trailer: {}
+        host: libretranslate.com
+        remote_addr: ""
+        request_uri: ""
+        body: api_key=&format=text&q=Free+and+Open+Source+Machine+Translation+API.+Self-hosted%2C+offline+capable+and+easy+to+setup.&source=auto&target=zh
+        form:
+            api_key:
+                - ""
+            format:
+                - text
+            q:
+                - Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup.
+            source:
+                - auto
+            target:
+                - zh
+        headers:
+            Content-Type:
+                - application/x-www-form-urlencoded
+            User-Agent:
+                - go-resty/2.7.0 (https://github.com/go-resty/resty)
+        url: https://libretranslate.com/translate
+        method: POST
+      response:
+        proto: HTTP/2.0
+        proto_major: 2
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 70
+        uncompressed: false
+        body: |
+            {"error":"Visit https://portal.libretranslate.com to get an API key"}
+        headers:
+            Access-Control-Allow-Credentials:
+                - "true"
+            Access-Control-Allow-Headers:
+                - Authorization, Content-Type
+            Access-Control-Allow-Methods:
+                - GET, POST
+            Access-Control-Allow-Origin:
+                - '*'
+            Access-Control-Expose-Headers:
+                - Authorization
+            Access-Control-Max-Age:
+                - "1728000"
+            Alt-Svc:
+                - h3=":443"; ma=86400
+            Cf-Cache-Status:
+                - DYNAMIC
+            Cf-Ray:
+                - 800ccfd69a6323f5-LHR
+            Content-Length:
+                - "70"
+            Content-Type:
+                - application/json
+            Date:
+                - Sun, 03 Sep 2023 09:02:05 GMT
+            Nel:
+                - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Report-To:
+                - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=YH60auU9Mi4W1uXDStMOKW8QM9iImQMBysZgsLRTfYyf6ycqXfVZZaBjL8%2Bc2JhGBcb0zsZIBros6kimCnXLAIzwit5CeC%2BsCPCyyq4AzAyxJ3KI2ACMt%2FGrCx2A2WE%2FE1O1GLGFPAoKig6%2BYvNgB%2FQ%3D"}],"group":"cf-nel","max_age":604800}'
+            Server:
+                - cloudflare
+            Set-Cookie:
+                - session=d4b2381b-d48e-439d-805a-1f1abda12f51; Expires=Wed, 04 Oct 2023 09:02:05 GMT; HttpOnly; Path=/
+        status: 400 Bad Request
+        code: 400
+        duration: 1.442633952s

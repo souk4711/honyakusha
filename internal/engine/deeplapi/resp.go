@@ -7,6 +7,5 @@ import (
 )
 
 func buildResultFromResp(resp *resty.Response) res.ResTranslator {
-	println(resp)
-	return res.NewResTranslatorSuccess()
+	return res.NewResTranslatorSuccess("")
 }

@@ -8,18 +8,24 @@ import (
 )
 
 func TranslateText(text string, from string, to string, conf conf.ConfTranslator) res.ResTranslator {
-	client := resty.New()
+	client := buildClient(conf)
+	return makeRequest(client, text, from, to, conf)
+}
 
+func buildClient(conf conf.ConfTranslator) *resty.Client {
+	client := resty.New()
 	if conf.Proxy != "" {
 		client.SetProxy(conf.Proxy)
 	}
+	return client
+}
 
-	resp, err := client.R().
-		SetBody(buildReqBody(text, from, to, conf)).
-		Post(buildReqURL(conf))
-	if err != nil {
+func makeRequest(client *resty.Client, text string, from string, to string, conf conf.ConfTranslator) res.ResTranslator {
+	if resp, err := client.R().
+		SetFormData(buildReqBody(text, from, to, conf)).
+		Post(buildReqURL(conf)); err != nil {
 		return res.NewResTranslatorFailure(err.Error())
+	} else {
+		return buildResultFromResp(resp)
 	}
-
-	return buildResultFromResp(resp)
 }

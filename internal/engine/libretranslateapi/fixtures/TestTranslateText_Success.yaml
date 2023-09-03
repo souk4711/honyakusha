@@ -1,0 +1,69 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 140
+        transfer_encoding: []
+        trailer: {}
+        host: translate.terraprint.co
+        remote_addr: ""
+        request_uri: ""
+        body: api_key=&format=text&q=Free+and+Open+Source+Machine+Translation+API.+Self-hosted%2C+offline+capable+and+easy+to+setup.&source=auto&target=zh
+        form:
+            api_key:
+                - ""
+            format:
+                - text
+            q:
+                - Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup.
+            source:
+                - auto
+            target:
+                - zh
+        headers:
+            Content-Type:
+                - application/x-www-form-urlencoded
+            User-Agent:
+                - go-resty/2.7.0 (https://github.com/go-resty/resty)
+        url: https://translate.terraprint.co/translate
+        method: POST
+      response:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding: []
+        trailer: {}
+        content_length: 228
+        uncompressed: false
+        body: |
+            {"detectedLanguage":{"confidence":98.0,"language":"en"},"translatedText":"\u514d\u8d39\u548c\u5f00\u653e\u7684\u6e90\u5e93\u3002 \u81ea\u6211\u4e3b\u529e\u7684\u3001\u80fd\u591f\u548c\u5bb9\u6613\u5f62\u6210\u7684\u7ebf\u3002"}
+        headers:
+            Access-Control-Allow-Credentials:
+                - "true"
+            Access-Control-Allow-Headers:
+                - Authorization, Content-Type
+            Access-Control-Allow-Methods:
+                - GET, POST
+            Access-Control-Allow-Origin:
+                - '*'
+            Access-Control-Expose-Headers:
+                - Authorization
+            Access-Control-Max-Age:
+                - "1728000"
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "228"
+            Content-Type:
+                - application/json
+            Date:
+                - Sun, 03 Sep 2023 09:02:01 GMT
+            Server:
+                - nginx/1.18.0 (Ubuntu)
+        status: 200 OK
+        code: 200
+        duration: 2.437112789s
