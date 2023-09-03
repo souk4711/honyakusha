@@ -20,13 +20,21 @@ type Resp struct {
 
 func buildResultFromResp(resp *resty.Response) res.ResTranslator {
 	r := new(Resp)
-	if err := json.Unmarshal(resp.Body(), &r); err != nil {
-		return res.NewResTranslatorFailure(err.Error())
-	}
+  if resp.StatusCode() != 200 {
+    if err := json.Unmarshal(resp.Body(), &r); err == nil && r.Error != "" {
+      return res.NewResTranslatorFailure(r.Error)
+    } else {
+      return res.NewResTranslatorFailure(resp.Status())
+    }
+  }
 
-	if r.Error != "" {
-		return res.NewResTranslatorFailure(r.Error)
-	} else {
-		return res.NewResTranslatorSuccess(r.TranslatedText)
-	}
+  if err := json.Unmarshal(resp.Body(), &r); err != nil {
+      return res.NewResTranslatorFailure(err.Error())
+  } else {
+    if r.Error != "" {
+      return res.NewResTranslatorFailure(r.Error)
+    } else {
+      return res.NewResTranslatorSuccess(r.TranslatedText)
+    }
+  }
 }

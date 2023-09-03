@@ -22,8 +22,8 @@ func buildClient(conf conf.ConfTranslator) *resty.Client {
 
 func makeRequest(client *resty.Client, text string, source string, target string, conf conf.ConfTranslator) res.ResTranslator {
 	if resp, err := client.R().
-		SetBody(buildReqBody(text, source, target, conf)).
-		Post(buildReqURL(conf)); err != nil {
+		SetQueryParams(buildReqQueryParams(text, source, target, conf)).
+		Get(buildReqURL(conf)); err != nil {
 		return res.NewResTranslatorFailure(err.Error())
 	} else {
 		return buildResultFromResp(resp)

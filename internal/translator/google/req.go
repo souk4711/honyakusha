@@ -7,25 +7,32 @@ import (
 
 func buildReqURL(conf conf.ConfTranslator) string {
 	if conf.URI == "" {
-		return "https://translate.google.com"
+		return "https://translate.google.com/translate_a/single"
 	} else {
-		return conf.URI
+		return conf.URI + "/translate_a/single"
 	}
 }
 
-func buildReqBody(text string, source string, target string, conf conf.ConfTranslator) map[string]string {
+func buildReqQueryParams(text string, source string, target string, conf conf.ConfTranslator) map[string]string {
 	return map[string]string{
-		"source": buildReqBodySource(source),
-		"target": buildReqBodyTarget(target),
+		"client": "gtx", "dt": "t", "dj": "1",
+		"q":  text,
+		"sl": buildReqQueryParamsSource(source),
+		"tl": buildReqQueryParamsTarget(target),
 	}
 }
 
-func buildReqBodySource(source string) string {
+func buildReqQueryParamsSource(source string) string {
 	l := lang.Query(source)
-	return l.Macro()
+	code := l.Code
+	if code == "" {
+		return "auto"
+	} else {
+		return l.Macro()
+  }
 }
 
-func buildReqBodyTarget(target string) string {
+func buildReqQueryParamsTarget(target string) string {
 	l := lang.Query(target)
 	return l.Macro()
 }
