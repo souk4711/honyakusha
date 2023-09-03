@@ -12,12 +12,12 @@ type Translator struct {
 	Conf conf.ConfTranslator
 }
 
-func (t *Translator) translateText(text string, from string, to string) res.ResTranslator {
+func (t *Translator) translateText(text string, source string, target string) res.ResTranslator {
 	switch t.Code {
 	case "deepl-api":
-		return deeplapi.TranslateText(text, from, to, t.Conf)
+		return deeplapi.TranslateText(text, source, target, t.Conf)
 	case "libretranslate-api":
-		return libretranslateapi.TranslateText(text, from, to, t.Conf)
+		return libretranslateapi.TranslateText(text, source, target, t.Conf)
 	default:
 		return res.NewResTranslatorFailure("")
 	}

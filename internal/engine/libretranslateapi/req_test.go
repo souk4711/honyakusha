@@ -5,16 +5,16 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	api "github.com/souk4711/honyakusha/internal/engine/libretranslateapi"
+	engine "github.com/souk4711/honyakusha/internal/engine/libretranslateapi"
 )
 
 func TestBuildReqBodySource(t *testing.T) {
-	assert.Equal(t, "auto", api.BuildReqBodySource(""))
-	assert.Equal(t, "en", api.BuildReqBodySource("en-US"))
-	assert.Equal(t, "ja", api.BuildReqBodySource("ja"))
+	assert.Equal(t, "auto", engine.BuildReqBodySource(""))
+	assert.Equal(t, "en", engine.BuildReqBodySource("en-US"))
+	assert.Equal(t, "ja", engine.BuildReqBodySource("ja"))
 }
 
 func TestBuildReqBodyTarget(t *testing.T) {
-	assert.Equal(t, "en", api.BuildReqBodyTarget("en-US"))
-	assert.Equal(t, "ja", api.BuildReqBodySource("ja"))
+	assert.Equal(t, "en", engine.BuildReqBodyTarget("en-US"))
+	assert.Equal(t, "ja", engine.BuildReqBodySource("ja"))
 }

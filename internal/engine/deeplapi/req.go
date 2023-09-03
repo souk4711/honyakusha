@@ -21,35 +21,35 @@ func buildReqURL(conf conf.ConfTranslator) string {
 	}
 }
 
-func buildReqBody(text string, from string, to string) Req {
-	from = buildReqBodySource(from)
-	to = buildReqBodyTarget(to)
-	if from == "" {
+func buildReqBody(text string, source string, target string) Req {
+	source = buildReqBodySource(source)
+	target = buildReqBodyTarget(target)
+	if source == "" {
 		return Req{
 			Text:   []string{text},
-			Target: to,
+			Target: target,
 		}
 	} else {
 		return Req{
 			Text:   []string{text},
-			Source: from,
-			Target: to,
+			Source: source,
+			Target: target,
 		}
 	}
 }
 
-func buildReqBodySource(from string) string {
-	frLang := lang.Query(from)
-	code := frLang.Code
+func buildReqBodySource(source string) string {
+	l := lang.Query(source)
+	code := l.Code
 	if code == "" {
 		return ""
 	} else {
-		return strings.ToUpper(frLang.Macro())
+		return strings.ToUpper(l.Macro())
 	}
 }
 
-func buildReqBodyTarget(to string) string {
-	toLang := lang.Query(to)
-	code := toLang.Code
+func buildReqBodyTarget(target string) string {
+	l := lang.Query(target)
+	code := l.Code
 	return strings.ToUpper(code)
 }

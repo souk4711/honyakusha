@@ -13,8 +13,8 @@ type Conf struct {
 }
 
 type ConfTranslate struct {
-	From string `toml:"from"`
-	To   string `toml:"to"`
+	Source string `toml:"source"`
+	Target string `toml:"target"`
 }
 
 type ConfTranslators struct {

@@ -7,7 +7,7 @@ import (
 	"gopkg.in/dnaeon/go-vcr.v3/recorder"
 
 	"github.com/souk4711/honyakusha/internal/conf"
-	api "github.com/souk4711/honyakusha/internal/engine/libretranslateapi"
+	engine "github.com/souk4711/honyakusha/internal/engine/libretranslateapi"
 )
 
 func TestTranslateText_Success(t *testing.T) {
@@ -15,14 +15,14 @@ func TestTranslateText_Success(t *testing.T) {
 	defer func() { _ = recorder.Stop() }()
 
 	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co/translate"}
-	client := api.BuildClient(conf)
+	client := engine.BuildClient(conf)
 	client.SetTransport(recorder)
-	res := api.MakeRequest(client,
+	res := engine.MakeRequest(client,
 		"Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup.",
 		"", "zh-CN", conf,
 	)
 	assert.Equal(t, 0, res.Code)
-	assert.Equal(t, "免费和开放的源库。 自我主办的、能够和容易形成的线。", res.Data.Text)
+	assert.Equal(t, "免费和开放的源库。 自我主办的、能够和容易形成的线。", res.TranslatedText)
 }
 
 func TestTranslateText_ApiKeyRequired(t *testing.T) {
@@ -30,12 +30,12 @@ func TestTranslateText_ApiKeyRequired(t *testing.T) {
 	defer func() { _ = recorder.Stop() }()
 
 	conf := conf.ConfTranslator{}
-	client := api.BuildClient(conf)
+	client := engine.BuildClient(conf)
 	client.SetTransport(recorder)
-	res := api.MakeRequest(client,
+	res := engine.MakeRequest(client,
 		"Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup.",
 		"", "zh-CN", conf,
 	)
 	assert.Equal(t, 1, res.Code)
-	assert.Equal(t, "Visit https://portal.libretranslate.com to get an API key", res.Message)
+	assert.Equal(t, "Visit https://portal.libretranslate.com to get an API key", res.Error)
 }

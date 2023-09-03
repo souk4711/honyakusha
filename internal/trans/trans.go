@@ -23,7 +23,7 @@ func translateText(text string, c conf.Conf) res.Res {
 	for _, translator := range translators {
 		go func(translator Translator) {
 			defer wg.Done()
-			r := translator.translateText(text, c.Translate.From, c.Translate.To)
+			r := translator.translateText(text, c.Translate.Source, c.Translate.Target)
 			resChannel <- r
 		}(translator)
 	}

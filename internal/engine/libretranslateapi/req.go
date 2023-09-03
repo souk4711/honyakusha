@@ -13,27 +13,27 @@ func buildReqURL(conf conf.ConfTranslator) string {
 	}
 }
 
-func buildReqBody(text string, from string, to string, conf conf.ConfTranslator) map[string]string {
+func buildReqBody(text string, source string, target string, conf conf.ConfTranslator) map[string]string {
 	return map[string]string{
 		"q":       text,
-		"source":  buildReqBodySource(from),
-		"target":  buildReqBodyTarget(to),
+		"source":  buildReqBodySource(source),
+		"target":  buildReqBodyTarget(target),
 		"format":  "text",
 		"api_key": conf.ApiKey,
 	}
 }
 
-func buildReqBodySource(from string) string {
-	frLang := lang.Query(from)
-	code := frLang.Code
+func buildReqBodySource(source string) string {
+	l := lang.Query(source)
+	code := l.Code
 	if code == "" {
 		return "auto"
 	} else {
-		return frLang.Macro()
+		return l.Macro()
 	}
 }
 
-func buildReqBodyTarget(to string) string {
-	toLang := lang.Query(to)
-	return toLang.Macro()
+func buildReqBodyTarget(target string) string {
+	l := lang.Query(target)
+	return l.Macro()
 }

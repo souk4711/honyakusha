@@ -7,13 +7,9 @@ import (
 	"github.com/souk4711/honyakusha/internal/res"
 )
 
-func TranslateText(text string, from string, to string, conf conf.ConfTranslator) res.ResTranslator {
+func TranslateText(text string, source string, target string, conf conf.ConfTranslator) res.ResTranslator {
 	client := buildClient(conf)
-	if resp, err := makeRequest(client, text, from, to, conf); err != nil {
-		return res.NewResTranslatorFailure(err.Error())
-	} else {
-		return buildResultFromResp(resp)
-	}
+	return makeRequest(client, text, source, target, conf)
 }
 
 func buildClient(conf conf.ConfTranslator) *resty.Client {
@@ -29,8 +25,13 @@ func buildClient(conf conf.ConfTranslator) *resty.Client {
 	return client
 }
 
-func makeRequest(client *resty.Client, text string, from string, to string, conf conf.ConfTranslator) (*resty.Response, error) {
-	return client.R().
-		SetBody(buildReqBody(text, from, to)).
-		Post(buildReqURL(conf))
+func makeRequest(client *resty.Client, text string, source string, target string, conf conf.ConfTranslator) res.ResTranslator {
+	if resp, err := client.R().
+		SetBody(buildReqBody(text, source, target)).
+		Post(buildReqURL(conf)); err != nil {
+		return res.NewResTranslatorSuccess(err.Error())
+	} else {
+		return buildResultFromResp(resp)
+	}
+
 }
