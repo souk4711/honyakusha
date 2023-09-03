@@ -39,3 +39,33 @@ func TestTranslateText_ApiKeyRequired(t *testing.T) {
 	assert.Equal(t, 1, res.Code)
 	assert.Equal(t, "Visit https://portal.libretranslate.com to get an API key", res.Error)
 }
+
+func TestTranslateText_SourceUnsupported(t *testing.T) {
+	recorder, _ := recorder.New("fixtures/TestTranslateText_SourceUnsupported")
+	defer func() { _ = recorder.Stop() }()
+
+	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co/translate"}
+	client := engine.BuildClient(conf)
+	client.SetTransport(recorder)
+	res := engine.MakeRequest(client,
+		"驢不勝怒，蹄之",
+		"lzh", "zh-CN", conf,
+	)
+	assert.Equal(t, 1, res.Code)
+	assert.Contains(t, res.Error, "is not supported")
+}
+
+func TestTranslateText_TargetUnsupported(t *testing.T) {
+	recorder, _ := recorder.New("fixtures/TestTranslateText_TargetUnsupported")
+	defer func() { _ = recorder.Stop() }()
+
+	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co/translate"}
+	client := engine.BuildClient(conf)
+	client.SetTransport(recorder)
+	res := engine.MakeRequest(client,
+		"Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup.",
+		"", "lzh", conf,
+	)
+	assert.Equal(t, 1, res.Code)
+	assert.Contains(t, res.Error, "is not supported")
+}
