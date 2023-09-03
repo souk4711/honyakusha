@@ -7,7 +7,7 @@ import (
 	"gopkg.in/dnaeon/go-vcr.v3/recorder"
 
 	"github.com/souk4711/honyakusha/internal/conf"
-	engine "github.com/souk4711/honyakusha/internal/engine/libretranslateapi"
+	translator "github.com/souk4711/honyakusha/internal/translator/libretranslateapi"
 )
 
 func TestTranslateText_Success(t *testing.T) {
@@ -15,9 +15,9 @@ func TestTranslateText_Success(t *testing.T) {
 	defer func() { _ = recorder.Stop() }()
 
 	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co/translate"}
-	client := engine.BuildClient(conf)
+	client := translator.BuildClient(conf)
 	client.SetTransport(recorder)
-	res := engine.MakeRequest(client,
+	res := translator.MakeRequest(client,
 		"Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup.",
 		"", "zh-CN", conf,
 	)
@@ -30,9 +30,9 @@ func TestTranslateText_ApiKeyRequired(t *testing.T) {
 	defer func() { _ = recorder.Stop() }()
 
 	conf := conf.ConfTranslator{}
-	client := engine.BuildClient(conf)
+	client := translator.BuildClient(conf)
 	client.SetTransport(recorder)
-	res := engine.MakeRequest(client,
+	res := translator.MakeRequest(client,
 		"Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup.",
 		"", "zh-CN", conf,
 	)
@@ -45,9 +45,9 @@ func TestTranslateText_SourceUnsupported(t *testing.T) {
 	defer func() { _ = recorder.Stop() }()
 
 	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co/translate"}
-	client := engine.BuildClient(conf)
+	client := translator.BuildClient(conf)
 	client.SetTransport(recorder)
-	res := engine.MakeRequest(client,
+	res := translator.MakeRequest(client,
 		"驢不勝怒，蹄之",
 		"lzh", "zh-CN", conf,
 	)
@@ -60,9 +60,9 @@ func TestTranslateText_TargetUnsupported(t *testing.T) {
 	defer func() { _ = recorder.Stop() }()
 
 	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co/translate"}
-	client := engine.BuildClient(conf)
+	client := translator.BuildClient(conf)
 	client.SetTransport(recorder)
-	res := engine.MakeRequest(client,
+	res := translator.MakeRequest(client,
 		"Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup.",
 		"", "lzh", conf,
 	)

@@ -7,9 +7,9 @@ import (
 )
 
 func Format(res res.Res) string {
-	if data, err := json.Marshal(&res); err == nil {
-		return string(data)
-	} else {
+	if data, err := json.Marshal(&res); err != nil {
 		return err.Error()
+	} else {
+		return string(data)
 	}
 }

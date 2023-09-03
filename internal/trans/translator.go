@@ -1,10 +1,12 @@
 package trans
 
 import (
+	"fmt"
+
 	"github.com/souk4711/honyakusha/internal/conf"
-	"github.com/souk4711/honyakusha/internal/engine/deeplapi"
-	"github.com/souk4711/honyakusha/internal/engine/libretranslateapi"
 	"github.com/souk4711/honyakusha/internal/res"
+	"github.com/souk4711/honyakusha/internal/translator/deeplapi"
+	"github.com/souk4711/honyakusha/internal/translator/libretranslateapi"
 )
 
 type Translator struct {
@@ -12,14 +14,14 @@ type Translator struct {
 	Conf conf.ConfTranslator
 }
 
-func (t *Translator) translateText(text string, source string, target string) res.ResTranslator {
+func (t *Translator) TranslateText(text string, source string, target string) res.ResTranslator {
 	switch t.Code {
 	case "deepl-api":
 		return deeplapi.TranslateText(text, source, target, t.Conf)
 	case "libretranslate-api":
 		return libretranslateapi.TranslateText(text, source, target, t.Conf)
 	default:
-		return res.NewResTranslatorFailure("")
+		return res.NewResTranslatorFailure(fmt.Sprintf("Unsupported Translator `%s'", t.Code))
 	}
 }
 

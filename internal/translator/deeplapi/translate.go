@@ -29,9 +29,8 @@ func makeRequest(client *resty.Client, text string, source string, target string
 	if resp, err := client.R().
 		SetBody(buildReqBody(text, source, target)).
 		Post(buildReqURL(conf)); err != nil {
-		return res.NewResTranslatorSuccess(err.Error())
+		return res.NewResTranslatorFailure(err.Error())
 	} else {
 		return buildResultFromResp(resp)
 	}
-
 }
