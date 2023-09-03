@@ -1,0 +1,15 @@
+package json
+
+import (
+	"encoding/json"
+
+	"github.com/souk4711/honyakusha/internal/res"
+)
+
+func Format(res res.Res) string {
+	if data, err := json.Marshal(&res); err == nil {
+		return string(data)
+	} else {
+		return err.Error()
+	}
+}

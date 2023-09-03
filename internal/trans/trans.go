@@ -7,12 +7,7 @@ import (
 	"github.com/souk4711/honyakusha/internal/res"
 )
 
-func TranslateText(text string) {
-	c := conf.Load()
-	translateText(text, c)
-}
-
-func translateText(text string, c conf.Conf) res.Res {
+func TranslateText(text string, c conf.Conf) res.Res {
 	translators := availableTranslators(c.Translators)
 
 	resChannel := make(chan res.ResTranslator)
@@ -20,14 +15,21 @@ func translateText(text string, c conf.Conf) res.Res {
 
 	wg := sync.WaitGroup{}
 	wg.Add(len(translators))
+
 	for _, translator := range translators {
 		go func(translator Translator) {
-			defer wg.Done()
 			r := translator.translateText(text, c.Translate.Source, c.Translate.Target)
 			resChannel <- r
+			wg.Done()
 		}(translator)
 	}
-	wg.Wait()
 
-	return res.Res{}
+	res := res.NewResSuccess()
+	for range translators {
+		r := <-resChannel
+		res.Translators = append(res.Translators, r)
+	}
+
+	wg.Wait()
+	return res
 }
