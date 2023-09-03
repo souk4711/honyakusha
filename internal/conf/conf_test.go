@@ -2,33 +2,32 @@ package conf_test
 
 import (
 	"os"
-	"os/exec"
 	"path/filepath"
 	"testing"
 
+	"github.com/adrg/xdg"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/souk4711/honyakusha/internal/conf"
 )
 
 func TestFilePath(t *testing.T) {
-	home, _ := os.UserHomeDir()
-	xdgConfPath, _ := filepath.Abs(filepath.Join(home, ".config/honyakusha.toml"))
-	cwdConfPath, _ := filepath.Abs(filepath.Join("", "honyakusha.toml"))
+	xdgConfPath, _ := filepath.Abs(filepath.Join(xdg.ConfigHome, "honyakusha.toml"))
+	cwdConfPath, _ := filepath.Abs("honyakusha.toml")
 
-	_ = exec.Command("touch", xdgConfPath).Run()
-	_ = exec.Command("touch", cwdConfPath).Run()
-  defer func () { _ = exec.Command("rm", cwdConfPath).Run() }()
+	_, _ = os.Create(xdgConfPath)
+	_, _ = os.Create(cwdConfPath)
+	defer func() { os.Remove(cwdConfPath) }()
 
 	f := conf.FilePath()
 	assert.Equal(t, cwdConfPath, f)
 
-	_ = exec.Command("rm", cwdConfPath).Run()
+	_ = os.Remove(cwdConfPath)
 	f = conf.FilePath()
 	assert.Equal(t, xdgConfPath, f)
 
 	if _, ok := os.LookupEnv("GITHUB_WORKSPACE"); ok {
-		_ = exec.Command("rm", xdgConfPath).Run()
+		_ = os.Remove(xdgConfPath)
 		f = conf.FilePath()
 		assert.Equal(t, "", f)
 	}
