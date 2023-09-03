@@ -8,21 +8,21 @@ import (
 	"github.com/souk4711/honyakusha/internal/lang"
 )
 
-func TestMacro(t *testing.T) {
+func TestCode_639_1(t *testing.T) {
 	r := lang.Query("fr")
-	assert.Equal(t, "fr", r.Macro())
+	assert.Equal(t, "fr", r.Code_639_1())
 
 	r = lang.Query("fr-CA")
-	assert.Equal(t, "fr", r.Macro())
+	assert.Equal(t, "fr", r.Code_639_1())
 
 	r = lang.Query("mhr")
-	assert.Equal(t, "mhr", r.Macro())
+	assert.Equal(t, "mhr", r.Code_639_1())
 
 	r = lang.Query("mni-Mtei")
-	assert.Equal(t, "mni", r.Macro())
+	assert.Equal(t, "mni", r.Code_639_1())
 
 	r = lang.Query("")
-	assert.Equal(t, "", r.Macro())
+	assert.Equal(t, "", r.Code_639_1())
 }
 
 func TestQuery(t *testing.T) {

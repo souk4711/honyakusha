@@ -184,7 +184,7 @@ type Lang struct {
 	LocaleName string
 }
 
-func (l *Lang) Macro() string {
+func (l *Lang) Code_639_1() string {
 	if idx := strings.Index(l.Code, "-"); idx == -1 {
 		return l.Code
 	} else {

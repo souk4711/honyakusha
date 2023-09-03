@@ -44,7 +44,7 @@ func buildReqBodySource(source string) string {
 	if code == "" {
 		return ""
 	} else {
-		return strings.ToUpper(l.Macro())
+		return strings.ToUpper(l.Code_639_1())
 	}
 }
 

@@ -29,11 +29,11 @@ func buildReqBodySource(source string) string {
 	if code == "" {
 		return "auto"
 	} else {
-		return l.Macro()
+		return l.Code_639_1()
 	}
 }
 
 func buildReqBodyTarget(target string) string {
 	l := lang.Query(target)
-	return l.Macro()
+	return l.Code_639_1()
 }
