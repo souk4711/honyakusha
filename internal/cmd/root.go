@@ -30,7 +30,7 @@ func setHonyakushaVersion(gitCommit string, builtTime string) {
 func newHonyakushaCommand() *cobra.Command {
 	var rootCommand = &cobra.Command{
 		Use:   "honyakusha",
-		Short: "",
+		Short: "Translate text using a variety of translation services",
 	}
 
 	rootCommand.SilenceErrors = true

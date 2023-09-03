@@ -29,7 +29,7 @@ func buildReqQueryParamsSource(source string) string {
 		return "auto"
 	} else {
 		return l.Macro()
-  }
+	}
 }
 
 func buildReqQueryParamsTarget(target string) string {

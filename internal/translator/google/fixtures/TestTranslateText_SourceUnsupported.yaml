@@ -1,0 +1,67 @@
+---
+version: 2
+interactions:
+    - id: 0
+      request:
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: translate.google.com
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            User-Agent:
+                - go-resty/2.7.0 (https://github.com/go-resty/resty)
+        url: https://translate.google.com/translate_a/single?client=gtx&dj=1&dt=t&q=%E9%A6%AC%E4%B9%8B%E5%8D%83%E9%87%8C%E8%80%85%EF%BC%8C%E4%B8%80%E9%A3%9F%E6%88%96%E7%9B%A1%E7%B2%9F%E4%B8%80%E7%9F%B3&sl=lzh&tl=zh
+        method: GET
+      response:
+        proto: HTTP/2.0
+        proto_major: 2
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: -1
+        uncompressed: true
+        body: <html lang=en><meta charset=utf-8><meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width"><title>Error 400 (Bad Request)!!1</title><style nonce="vMEagYJ5WYmjfsHwY-uwAg">*{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{color:#222;text-align:unset;margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px;}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 22px;overflow:hidden}pre{white-space:pre-wrap;}ins{color:#777;text-decoration:none}a img{border:0}@media screen and (max-width:772px){body{background:none;margin-top:0;max-width:none;padding-right:0}}#logo{background:url(//www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png) no-repeat;margin-left:-5px}@media only screen and (min-resolution:192dpi){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) no-repeat 0% 0%/100% 100%;-moz-border-image:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) 0}}@media only screen and (-webkit-min-device-pixel-ratio:2){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) no-repeat;-webkit-background-size:100% 100%}}#logo{display:inline-block;height:54px;width:150px}</style><main id="af-error-container" role="main"><a href=//www.google.com><span id=logo aria-label=Google role=img></span></a><p><b>400.</b> <ins>That’s an error.</ins><p>The server cannot process the request because it is malformed. It should not be retried. <ins>That’s all we know.</ins></main>
+        headers:
+            Accept-Ch:
+                - Sec-CH-UA-Arch, Sec-CH-UA-Bitness, Sec-CH-UA-Full-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Model, Sec-CH-UA-WoW64, Sec-CH-UA-Form-Factor, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version
+            Alt-Svc:
+                - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+            Cache-Control:
+                - no-cache, no-store, max-age=0, must-revalidate
+            Content-Security-Policy:
+                - script-src 'report-sample' 'nonce-WixEMwUXPWmPi5Vsa1PKJw' 'unsafe-inline';object-src 'none';base-uri 'self';report-uri /_/TranslateApiHttp/cspreport;worker-src 'self'
+                - require-trusted-types-for 'script';report-uri /_/TranslateApiHttp/cspreport
+            Content-Type:
+                - text/html; charset=utf-8
+            Cross-Origin-Opener-Policy:
+                - same-origin
+            Cross-Origin-Resource-Policy:
+                - cross-origin
+            Date:
+                - Sun, 03 Sep 2023 19:01:28 GMT
+            Expires:
+                - Mon, 01 Jan 1990 00:00:00 GMT
+            P3p:
+                - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+            Permissions-Policy:
+                - ch-ua-arch=*, ch-ua-bitness=*, ch-ua-full-version=*, ch-ua-full-version-list=*, ch-ua-model=*, ch-ua-wow64=*, ch-ua-form-factor=*, ch-ua-platform=*, ch-ua-platform-version=*
+            Pragma:
+                - no-cache
+            Server:
+                - ESF
+            Set-Cookie:
+                - NID=511=BY6G0v-UvoEzbVDdWwtnjcFVLLn_qpxkqKd_Is8bwqkEyNX01dWUneNgDjlhWFHOnvbKlVq6jVmQmOe_kDRlIEQXg-nfOMf_9Okg8U9p_fItSnJUW0zSIWCF3yabZ-aD4CbVNfUhrOpw3nYbZ_FcNnUWVDLZXXgX0YV1NhVhOGc; expires=Mon, 04-Mar-2024 19:01:28 GMT; path=/; domain=.google.com; HttpOnly
+            X-Content-Type-Options:
+                - nosniff
+            X-Xss-Protection:
+                - "0"
+        status: 400 Bad Request
+        code: 400
+        duration: 194.164042ms

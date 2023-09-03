@@ -9,30 +9,30 @@ import (
 )
 
 type Resp struct {
-  Sentences []RespSentence `json:"sentences"`
-  Source string `json:"src"`
+	Sentences []RespSentence `json:"sentences"`
+	Source    string         `json:"src"`
 }
 
 type RespSentence struct {
-  Trans string `json:"trans"`
-  Orig string `json:"orig"`
-  Backend int32 `json:"backend"`
+	Trans   string `json:"trans"`
+	Orig    string `json:"orig"`
+	Backend int32  `json:"backend"`
 }
 
 func buildResultFromResp(resp *resty.Response) res.ResTranslator {
 	r := new(Resp)
-  if resp.StatusCode() != 200 {
-    return res.NewResTranslatorFailure(resp.Status())
-  }
+	if resp.StatusCode() != 200 {
+		return res.NewResTranslatorFailure(resp.Status())
+	}
 
-  if err := json.Unmarshal(resp.Body(), &r); err != nil {
-    return res.NewResTranslatorFailure(err.Error())
-  } else {
-    sentences := r.Sentences
-    if len(sentences) > 0 {
-      return res.NewResTranslatorSuccess(r.Sentences[0].Trans)
-    } else {
-      return res.NewResTranslatorFailure("")
-    }
-  }
+	if err := json.Unmarshal(resp.Body(), &r); err != nil {
+		return res.NewResTranslatorFailure(err.Error())
+	}
+
+	sentences := r.Sentences
+	if len(sentences) > 0 {
+		return res.NewResTranslatorSuccess(r.Sentences[0].Trans)
+	} else {
+		return res.NewResTranslatorFailure("")
+	}
 }

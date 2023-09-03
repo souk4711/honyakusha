@@ -35,15 +35,15 @@ func (t *Translator) TranslateText(text string, source string, target string) re
 }
 
 func availableTranslators(c conf.ConfTranslators) []Translator {
-	arr := []Translator{}
-	if c.Google.Enabled {
-		arr = append(arr, Translator{Code: TRANSLATOR_GOOGLE, Conf: c.Google})
+	translators := []Translator{}
+	addTranslatorIfEnabled := func(ct conf.ConfTranslator, code string) {
+		if ct.Enabled {
+			translators = append(translators, Translator{Code: code, Conf: ct})
+		}
 	}
-	if c.DeeplAPI.Enabled {
-		arr = append(arr, Translator{Code: TRANSLATOR_DEEPL_API, Conf: c.DeeplAPI})
-	}
-	if c.LibreTranslateAPI.Enabled {
-		arr = append(arr, Translator{Code: TRANSLATOR_LIBRETRANSLATE_API, Conf: c.LibreTranslateAPI})
-	}
-	return arr
+
+	addTranslatorIfEnabled(c.Google, TRANSLATOR_GOOGLE)
+	addTranslatorIfEnabled(c.DeeplAPI, TRANSLATOR_DEEPL_API)
+	addTranslatorIfEnabled(c.LibreTranslateAPI, TRANSLATOR_LIBRETRANSLATE_API)
+	return translators
 }
