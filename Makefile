@@ -19,7 +19,7 @@ tidy:
 	go mod tidy
 
 test:
-	go test ./...
+	go test -v ./... -count=1
 
 build:
 	go build -ldflags "$(LDFLAGS)" -o ./bin/honyakusha ./cmd/honyakusha/

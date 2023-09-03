@@ -16,13 +16,13 @@ func translateText(text string, c conf.Conf) res.Res {
 	translators := availableTranslators(c.Translators)
 
 	resChannel := make(chan res.ResTranslator)
-	defer func() { close(resChannel) }()
+	defer close(resChannel)
 
 	wg := sync.WaitGroup{}
 	wg.Add(len(translators))
 	for _, translator := range translators {
 		go func(translator Translator) {
-			defer func() { wg.Done() }()
+			defer wg.Done()
 			r := translator.translateText(text, c.Translate.From, c.Translate.To)
 			resChannel <- r
 		}(translator)
