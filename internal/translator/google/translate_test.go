@@ -26,6 +26,29 @@ func TestTranslateText_Success(t *testing.T) {
 	assert.Contains(t, res.TranslatedText, "谷歌翻译是谷歌开发的多语言神经机器翻译服务")
 }
 
+func TestTranslateText_MultipleLines(t *testing.T) {
+	recorder, _ := recorder.New("fixtures/TestTranslateText_MultipleLines")
+	defer func() { _ = recorder.Stop() }()
+
+	conf := conf.ConfTranslator{}
+	client := translator.BuildClient(conf)
+	client.SetTransport(recorder)
+	res := translator.MakeRequest(client,
+		"On your computer, open Chrome.\n"+
+			"Go to a webpage written in another language.\n"+
+			"On the right of the address bar, click Translate.\n"+
+			"Click on your preferred language.\n"+
+			"Chrome will translate your current webpage.\n",
+		"", "zh-CN", conf,
+	)
+	assert.Equal(t, 0, res.Code)
+	assert.Contains(t, res.TranslatedText, "在您的计算机上，打开 Chrome。")
+	assert.Contains(t, res.TranslatedText, "转到用另一种语言编写的网页。")
+	assert.Contains(t, res.TranslatedText, "在地址栏右侧，单击翻译。")
+	assert.Contains(t, res.TranslatedText, "单击您的首选语言。")
+	assert.Contains(t, res.TranslatedText, "Chrome 将翻译您当前的网页。")
+}
+
 func TestTranslateText_SourceUnsupported(t *testing.T) {
 	recorder, _ := recorder.New("fixtures/TestTranslateText_SourceUnsupported")
 	defer func() { _ = recorder.Stop() }()

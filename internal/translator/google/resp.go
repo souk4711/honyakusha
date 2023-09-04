@@ -31,7 +31,11 @@ func buildResultFromResp(resp *resty.Response) res.ResTranslator {
 
 	sentences := r.Sentences
 	if len(sentences) > 0 {
-		return res.NewResTranslatorSuccess(r.Sentences[0].Trans)
+		var t string
+		for _, s := range sentences {
+			t = t + s.Trans + "\n"
+		}
+		return res.NewResTranslatorSuccess(t)
 	} else {
 		return res.NewResTranslatorFailure("")
 	}
