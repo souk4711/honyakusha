@@ -17,7 +17,7 @@ func newTransCommand() *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {
 			c := conf.Load()
 			res := trans.Translate(strings.Join(args, " "), c)
-			fmt.Print(trans.Format(res, "json"))
+			fmt.Print(trans.Format(res, "plain"))
 		},
 	}
 
