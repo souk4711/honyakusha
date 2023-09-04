@@ -47,7 +47,7 @@ func preflight(client *resty.Client, conf conf.ConfTranslator) (map[string]strin
 		return fail("Failed to extract key/token")
 	}
 	if len(TOKENS) != 3 {
-		return fail("Failed to extract key/token")
+		return fail("Token is missing")
 	}
 	KEY, _ := TOKENS[0].(float64)
 	TOKEN, _ := TOKENS[1].(string)
