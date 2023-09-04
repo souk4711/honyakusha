@@ -37,7 +37,7 @@ func TestTranslateText_ApiKeyRequired(t *testing.T) {
 		"", "zh-CN", conf,
 	)
 	assert.Equal(t, 1, res.Code)
-	assert.Equal(t, "Visit https://portal.libretranslate.com to get an API key", res.Error)
+	assert.Contains(t, res.Error, "Visit https://portal.libretranslate.com to get an API key")
 }
 
 func TestTranslateText_SourceUnsupported(t *testing.T) {

@@ -45,7 +45,7 @@ func (t *Translator) TranslateText(text string, source string, target string) re
 	case TRANSLATOR_LIBRETRANSLATE_API:
 		r = libretranslateapi.TranslateText(text, source, target, t.Conf)
 	default:
-		r = res.NewResTranslatorFailure(fmt.Sprintf("Unsupported Translator `%s'", t.Code))
+		r = res.NewResTranslatorFailure(fmt.Sprintf("Unsupported translator `%s'", t.Code))
 	}
 
 	r.Translator.Code = t.Code

@@ -24,7 +24,7 @@ func makeRequest(client *resty.Client, text string, source string, target string
 	if resp, err := client.R().
 		SetQueryParams(buildReqQueryParams(text, source, target, conf)).
 		Get(buildReqURL(conf)); err != nil {
-		return res.NewResTranslatorFailure(err.Error())
+		return res.NewResTranslatorFailure("HTTPError: " + err.Error())
 	} else {
 		return buildResultFromResp(resp)
 	}

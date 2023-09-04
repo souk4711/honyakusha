@@ -24,6 +24,6 @@ func (f *Formatter) Format(res res.Res) string {
 	case FORMATTER_PLAIN:
 		return plain.Format(res)
 	default:
-		return fmt.Sprintf("Unsupported Formatter `%s'", f.Code)
+		return fmt.Sprintf("Unsupported formatter `%s'", f.Code)
 	}
 }

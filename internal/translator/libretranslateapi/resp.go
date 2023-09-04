@@ -22,18 +22,18 @@ func buildResultFromResp(resp *resty.Response) res.ResTranslator {
 	r := new(Resp)
 	if resp.StatusCode() != 200 {
 		if err := json.Unmarshal(resp.Body(), &r); err == nil && r.Error != "" {
-			return res.NewResTranslatorFailure(r.Error)
+			return res.NewResTranslatorFailure("ApiError: " + r.Error)
 		} else {
-			return res.NewResTranslatorFailure(resp.Status())
+			return res.NewResTranslatorFailure("ApiError: " + resp.Status())
 		}
 	}
 
 	if err := json.Unmarshal(resp.Body(), &r); err != nil {
-		return res.NewResTranslatorFailure(err.Error())
+		return res.NewResTranslatorFailure("ApiError: " + err.Error())
 	}
 
 	if r.Error != "" {
-		return res.NewResTranslatorFailure(r.Error)
+		return res.NewResTranslatorFailure("ApiError: " + r.Error)
 	} else {
 		return res.NewResTranslatorSuccess(r.TranslatedText)
 	}

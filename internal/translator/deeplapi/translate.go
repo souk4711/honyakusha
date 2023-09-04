@@ -29,7 +29,7 @@ func makeRequest(client *resty.Client, text string, source string, target string
 	if resp, err := client.R().
 		SetBody(buildReqBody(text, source, target, conf)).
 		Post(buildReqURL(conf)); err != nil {
-		return res.NewResTranslatorFailure(err.Error())
+		return res.NewResTranslatorFailure("HTTPError: " + err.Error())
 	} else {
 		return buildResultFromResp(resp)
 	}

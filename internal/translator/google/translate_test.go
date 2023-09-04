@@ -61,7 +61,7 @@ func TestTranslateText_SourceUnsupported(t *testing.T) {
 		"lzh", "zh-CN", conf,
 	)
 	assert.Equal(t, 1, res.Code)
-	assert.Equal(t, res.Error, "400 Bad Request")
+	assert.Contains(t, res.Error, "400 Bad Request")
 }
 
 func TestTranslateText_TargetUnsupported(t *testing.T) {
@@ -77,5 +77,5 @@ func TestTranslateText_TargetUnsupported(t *testing.T) {
 		"", "lzh", conf,
 	)
 	assert.Equal(t, 1, res.Code)
-	assert.Equal(t, res.Error, "400 Bad Request")
+	assert.Contains(t, res.Error, "400 Bad Request")
 }
