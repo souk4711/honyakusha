@@ -7,6 +7,8 @@ import (
 
 var (
 	data = map[string]string{
+		"en-GB": "en",
+		"en-US": "en",
 		"zh-CN": "zh-Hans",
 		"zh-TW": "zh-Hant",
 	}
@@ -20,17 +22,17 @@ func buildReqURL(conf conf.ConfTranslator) string {
 	}
 }
 
-func buildFormData(text string, source string, target string, conf conf.ConfTranslator, pdata map[string]string) map[string]string {
+func buildReqFormData(text string, source string, target string, conf conf.ConfTranslator, pdata map[string]string) map[string]string {
 	return map[string]string{
 		"text":     text,
-		"fromLang": buildFormDataSource(source),
-		"to":       buildFormDataTarget(target),
+		"fromLang": buildReqFormDataSource(source),
+		"to":       buildReqFormDataTarget(target),
 		"token":    pdata["token"],
 		"key":      pdata["key"],
 	}
 }
 
-func buildFormDataSource(source string) string {
+func buildReqFormDataSource(source string) string {
 	l := lang.Query(source)
 	if l.Code == "" {
 		return "auto-detect"
@@ -41,7 +43,7 @@ func buildFormDataSource(source string) string {
 	}
 }
 
-func buildFormDataTarget(target string) string {
+func buildReqFormDataTarget(target string) string {
 	l := lang.Query(target)
 	if data[target] != "" {
 		return data[target]
