@@ -1,0 +1,40 @@
+<html>
+  <header>
+    <meta charset="UTF-8">
+    <style>
+      html {
+        font-family: Roboto,arial,sans-serif;
+      }
+      .translator {
+        margin: 12px 0;
+      }
+      .name {
+        padding: 2px 0;
+        margin: 6px 0;
+        border-color: purple;
+        border-style: solid;
+        border-width: 0 0 2px 0;
+        color: purple;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .translated-text {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 400;
+      }
+    </style>
+  </header>
+  <body>
+    <div>
+      {{ range .Translators }}
+        <div class="translator">
+          {{ with .Translator }}
+            <h2 class="name">{{ .Name }}</h2>
+          {{ end }}
+          <p class="translated-text">{{ .TranslatedText }}</p>
+        </div>
+      {{ end }}
+    </div>
+  </body>
+</html>
