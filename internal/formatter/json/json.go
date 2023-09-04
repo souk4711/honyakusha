@@ -7,7 +7,7 @@ import (
 )
 
 func Format(res res.Res) string {
-	if data, err := json.MarshalIndent(&res, "", "\t"); err != nil {
+	if data, err := json.MarshalIndent(&res, "", "    "); err != nil {
 		return err.Error()
 	} else {
 		return string(data) + "\n"

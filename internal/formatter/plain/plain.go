@@ -13,9 +13,9 @@ func Format(res res.Res) string {
 	for _, translator := range res.Translators {
 		r = r + translator.Translator.Name + ":\n"
 		if translator.Code != 0 {
-			r = r + "\n\t" + translator.Error + "\n\n"
+			r = r + "\n    " + translator.Error + "\n\n"
 		} else {
-			r = r + "\n\t" + translator.TranslatedText + "\n\n"
+			r = r + "\n    " + translator.TranslatedText + "\n\n"
 		}
 	}
 	return r
