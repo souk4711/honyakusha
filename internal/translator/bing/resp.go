@@ -10,14 +10,14 @@ import (
 
 type Resp struct {
 	DetectedLanguage struct {
-		Language   string  `json:"language"`
-    Score float32 `json:"score"`
+		Language string  `json:"language"`
+		Score    float32 `json:"score"`
 	} `json:"detectedLanguage"`
-  Translations []RespTranslation `json:"translations"`
+	Translations []RespTranslation `json:"translations"`
 }
 
 type RespTranslation struct {
-  Text string `json:"text"`
+	Text string `json:"text"`
 }
 
 func buildResultFromResp(resp *resty.Response) res.ResTranslator {
@@ -31,17 +31,17 @@ func buildResultFromResp(resp *resty.Response) res.ResTranslator {
 	}
 
 	if len(r) == 0 {
-    return res.NewResTranslatorFailure("ApiError: No result")
+		return res.NewResTranslatorFailure("ApiError: No result")
 	}
 
-  translations := r[0].Translations
-  if len(translations) > 0 {
-    var t string
-    for _, s := range translations {
-      t = t + s.Text + "\n"
-    }
-    return res.NewResTranslatorSuccess(t)
-  } else {
-    return res.NewResTranslatorFailure("ApiError: No result")
-  }
+	translations := r[0].Translations
+	if len(translations) > 0 {
+		var t string
+		for _, s := range translations {
+			t = t + s.Text + "\n"
+		}
+		return res.NewResTranslatorSuccess(t)
+	} else {
+		return res.NewResTranslatorFailure("ApiError: No result")
+	}
 }

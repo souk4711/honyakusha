@@ -33,6 +33,6 @@ func buildFormDataSource(source string) string {
 }
 
 func buildFormDataTarget(target string) string {
-  l := lang.Query(target)
-  return l.Code
+	l := lang.Query(target)
+	return l.Code
 }

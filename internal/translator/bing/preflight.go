@@ -36,7 +36,7 @@ func preflight(client *resty.Client, conf conf.ConfTranslator) (map[string]strin
 		return fail("Failed to extract IID")
 	}
 
-	RE_TOKEN_PAYLOAD := regexp.MustCompile("params_AbusePreventionHelper\\s?=\\s?([^\\]]+\\])")
+	RE_TOKEN_PAYLOAD := regexp.MustCompile(`params_AbusePreventionHelper\s?=\s?([^\]]+\])`)
 	TOKEN_PAYLOAD := RE_TOKEN_PAYLOAD.FindStringSubmatch(html)[1]
 	if TOKEN_PAYLOAD == "" {
 		return fail("Failed to extract params_AbusePreventionHelper")
