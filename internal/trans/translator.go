@@ -21,6 +21,19 @@ type Translator struct {
 	Conf conf.ConfTranslator
 }
 
+func (t *Translator) Name() string {
+	switch t.Code {
+	case TRANSLATOR_GOOGLE:
+		return "Google"
+	case TRANSLATOR_DEEPL_API:
+		return "DeepL Translate"
+	case TRANSLATOR_LIBRETRANSLATE_API:
+		return "LibreTranslate"
+	default:
+		return t.Code
+	}
+}
+
 func (t *Translator) TranslateText(text string, source string, target string) res.ResTranslator {
 	var r res.ResTranslator
 
@@ -35,7 +48,8 @@ func (t *Translator) TranslateText(text string, source string, target string) re
 		r = res.NewResTranslatorFailure(fmt.Sprintf("Unsupported Translator `%s'", t.Code))
 	}
 
-	r.Translator = t.Code
+	r.Translator.Code = t.Code
+	r.Translator.Name = t.Name()
 	return r
 }
 

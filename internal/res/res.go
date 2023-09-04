@@ -7,7 +7,10 @@ type Res struct {
 }
 
 type ResTranslator struct {
-	Translator     string `json:"translator"`
+	Translator struct {
+		Code string `json:"code"`
+		Name string `json:"name"`
+	} `json:"translator"`
 	Code           int    `json:"code"`
 	Error          string `json:"error"`
 	TranslatedText string `json:"translatedText"`
