@@ -25,8 +25,7 @@ func buildReqBody(text string, source string, target string, conf conf.ConfTrans
 
 func buildReqBodySource(source string) string {
 	l := lang.Query(source)
-	code := l.Code
-	if code == "" {
+	if l.Code == "" {
 		return "auto"
 	} else {
 		return l.Code_639_1()

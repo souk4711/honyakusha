@@ -7,25 +7,32 @@ import (
 
 func buildReqURL(conf conf.ConfTranslator) string {
 	if conf.URI == "" {
-		return "https://www.bing.com/translator"
+		return "https://www.bing.com/ttranslatev3"
 	} else {
-		return conf.URI
+		return conf.URI + "/ttranslatev3"
 	}
 }
 
-func buildReqBody(text string, source string, target string, conf conf.ConfTranslator) map[string]string {
+func buildFormData(text string, source string, target string, conf conf.ConfTranslator, pdata map[string]string) map[string]string {
 	return map[string]string{
-		"source": buildReqBodySource(source),
-		"target": buildReqBodyTarget(target),
+		"text":     text,
+		"fromLang": buildFormDataSource(source),
+		"to":       buildFormDataTarget(target),
+		"token":    pdata["token"],
+		"key":      pdata["key"],
 	}
 }
 
-func buildReqBodySource(source string) string {
+func buildFormDataSource(source string) string {
 	l := lang.Query(source)
-	return l.Code_639_1()
+	if l.Code == "" {
+		return "auto-detect"
+	} else {
+		return l.Code
+	}
 }
 
-func buildReqBodyTarget(target string) string {
-	l := lang.Query(target)
-	return l.Code_639_1()
+func buildFormDataTarget(target string) string {
+  l := lang.Query(target)
+  return l.Code
 }

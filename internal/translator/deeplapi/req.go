@@ -40,8 +40,7 @@ func buildReqBody(text string, source string, target string, conf conf.ConfTrans
 
 func buildReqBodySource(source string) string {
 	l := lang.Query(source)
-	code := l.Code
-	if code == "" {
+	if l.Code == "" {
 		return ""
 	} else {
 		return strings.ToUpper(l.Code_639_1())
@@ -50,6 +49,5 @@ func buildReqBodySource(source string) string {
 
 func buildReqBodyTarget(target string) string {
 	l := lang.Query(target)
-	code := l.Code
-	return strings.ToUpper(code)
+	return strings.ToUpper(l.Code)
 }
