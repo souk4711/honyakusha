@@ -22,16 +22,21 @@ type Translator struct {
 }
 
 func (t *Translator) TranslateText(text string, source string, target string) res.ResTranslator {
+	var r res.ResTranslator
+
 	switch t.Code {
 	case TRANSLATOR_GOOGLE:
-		return google.TranslateText(text, source, target, t.Conf)
+		r = google.TranslateText(text, source, target, t.Conf)
 	case TRANSLATOR_DEEPL_API:
-		return deeplapi.TranslateText(text, source, target, t.Conf)
+		r = deeplapi.TranslateText(text, source, target, t.Conf)
 	case TRANSLATOR_LIBRETRANSLATE_API:
-		return libretranslateapi.TranslateText(text, source, target, t.Conf)
+		r = libretranslateapi.TranslateText(text, source, target, t.Conf)
 	default:
-		return res.NewResTranslatorFailure(fmt.Sprintf("Unsupported Translator `%s'", t.Code))
+		r = res.NewResTranslatorFailure(fmt.Sprintf("Unsupported Translator `%s'", t.Code))
 	}
+
+	r.Translator = t.Code
+	return r
 }
 
 func availableTranslators(c conf.ConfTranslators) []Translator {
