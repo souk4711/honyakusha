@@ -5,6 +5,7 @@ import (
 
 	"github.com/souk4711/honyakusha/internal/conf"
 	"github.com/souk4711/honyakusha/internal/res"
+	"github.com/souk4711/honyakusha/internal/translator/helpers"
 )
 
 func TranslateText(text string, source string, target string, conf conf.ConfTranslator) res.ResTranslator {
@@ -13,15 +14,14 @@ func TranslateText(text string, source string, target string, conf conf.ConfTran
 }
 
 func buildClient(conf conf.ConfTranslator) *resty.Client {
-	client := resty.New()
-	if conf.Proxy != "" {
-		client.SetProxy(conf.Proxy)
-	}
+	client := helpers.BuildClient(conf)
+
 	if conf.ApiKey != "" {
 		client.
 			SetAuthScheme("DeepL-Auth-Key").
 			SetAuthToken(conf.ApiKey)
 	}
+
 	return client
 }
 
