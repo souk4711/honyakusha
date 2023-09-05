@@ -17,7 +17,7 @@ func newTransCommand() *cobra.Command {
 
 	var transCommand = &cobra.Command{
 		Use:   "trans TEXT",
-		Short: "Translate text",
+		Short: "Translate text via translation services",
 		Run: func(cmd *cobra.Command, args []string) {
 			c := conf.Load()
 			res := trans.Translate(strings.Join(args, " "), Source, Target, c)

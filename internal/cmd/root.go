@@ -35,6 +35,7 @@ func newHonyakushaCommand() *cobra.Command {
 
 	rootCommand.SilenceErrors = true
 	rootCommand.CompletionOptions.DisableDefaultCmd = true
+	rootCommand.AddCommand(newInitCommand())
 	rootCommand.AddCommand(newTransCommand())
 	rootCommand.AddCommand(newVersionCommand())
 

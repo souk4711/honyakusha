@@ -1,0 +1,19 @@
+[translate]
+source = ""
+target = "en-US"
+
+[translators.bing]
+enabled = true
+url = ""
+proxy = ""
+
+[translators.google]
+enabled = true
+url = ""
+proxy = ""
+
+[translators.libretranslate-api]
+enabled = false
+url = ""
+proxy = ""
+api-key = ""

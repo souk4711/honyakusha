@@ -31,7 +31,7 @@ func makeRequest(client *resty.Client, text string, source string, target string
 		SetQueryParam("IID", pdata["iid"]).
 		SetFormData(buildReqFormData(text, source, target, conf, pdata)).
 		Post(buildReqURL(conf)); err != nil {
-		return res.NewResTranslatorFailure(err.Error())
+		return res.NewResTranslatorFailure("HTTPError: " + err.Error())
 	} else {
 		return buildResultFromResp(resp)
 	}
