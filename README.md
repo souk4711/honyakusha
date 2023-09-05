@@ -59,6 +59,10 @@ Bing Translator:
 * json
 * plain
 
+## License
+
+available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
 
 [bing]:https://www.bing.com/translator
 [google]:https://translate.google.com/
