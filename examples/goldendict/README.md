@@ -2,7 +2,9 @@
 
 ### 1. Install Honyakusha according to [README.md](../../README.md)
 
-### 2. Open "Sources/Programs" dialog
+### 2. Start GoldenDict
+
+### 3. Open "Sources/Programs" dialog
 
 ![dialog-programs](./screenshots/dialog-programs.png)
 
