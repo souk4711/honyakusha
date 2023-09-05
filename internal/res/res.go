@@ -3,6 +3,7 @@ package res
 type Res struct {
 	Code        int             `json:"code"`
 	Error       string          `json:"error"`
+	Text        string          `json:"text"`
 	Translators []ResTranslator `json:"translators"`
 }
 
@@ -16,12 +17,12 @@ type ResTranslator struct {
 	TranslatedText string `json:"translatedText"`
 }
 
-func NewResSuccess() Res {
-	return Res{Code: 0}
+func NewResSuccess(text string) Res {
+	return Res{Code: 0, Text: text, Translators: []ResTranslator{}}
 }
 
 func NewResFailure(message string) Res {
-	return Res{Code: 1, Error: message}
+	return Res{Code: 1, Error: message, Translators: []ResTranslator{}}
 }
 
 func NewResTranslatorSuccess(text string) ResTranslator {

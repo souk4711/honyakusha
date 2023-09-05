@@ -10,7 +10,7 @@ import (
 )
 
 func TestFormat(t *testing.T) {
-	r := res.NewResSuccess()
+	r := res.NewResSuccess("HELLO, WORLD")
 	output := formatter.Format(r)
 	assert.Contains(t, output, "<html>")
 

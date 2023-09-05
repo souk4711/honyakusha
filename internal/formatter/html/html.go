@@ -23,6 +23,10 @@ var (
 )
 
 func Format(res res.Res) string {
+	if res.Code != 0 {
+		return res.Error + "\n"
+	}
+
 	var buff bytes.Buffer
 	if err := r.HTML(&buff, 0, "index", res); err != nil {
 		return err.Error()

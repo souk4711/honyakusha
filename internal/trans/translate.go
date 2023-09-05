@@ -24,7 +24,7 @@ func Translate(text string, source string, target string, c conf.Conf) res.Res {
 		}(translator)
 	}
 
-	res := res.NewResSuccess()
+	res := res.NewResSuccess(text)
 	for range translators {
 		r := <-resChannel
 		res.Translators = append(res.Translators, r)
