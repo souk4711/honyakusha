@@ -3,6 +3,7 @@ package plain
 import (
 	"strings"
 
+	"github.com/souk4711/honyakusha/internal/helpers"
 	"github.com/souk4711/honyakusha/internal/res"
 )
 
@@ -29,8 +30,8 @@ func Format(res res.Res) string {
 
 func indent(str string) string {
 	var arr []string
-	for _, ele := range strings.Split(strings.TrimSpace(str), "\n") {
-		arr = append(arr, "    "+strings.TrimSpace(ele))
+	for _, ele := range helpers.SplitTextIntoArray(str) {
+		arr = append(arr, "    "+ele)
 	}
 	return strings.Join(arr, "\n")
 }

@@ -4,9 +4,11 @@ import (
 	"bytes"
 	"embed"
 	"fmt"
+	"text/template"
 
 	"github.com/unrolled/render"
 
+	"github.com/souk4711/honyakusha/internal/helpers"
 	"github.com/souk4711/honyakusha/internal/res"
 )
 
@@ -29,6 +31,11 @@ var (
 			FS: embeddedTemplates,
 		},
 		Extensions: []string{".tmpl"},
+		Funcs: []template.FuncMap{
+			{
+				"SplitTextIntoArray": helpers.SplitTextIntoArray,
+			},
+		},
 	})
 )
 

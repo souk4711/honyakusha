@@ -33,7 +33,9 @@
   <body>
     <div class="raw">
       <h2 class="raw-name">Raw</h2>
-      <p class="raw-text">{{ .Text }}</p>
+      {{ range (SplitTextIntoArray .Text) }}
+        <p class="raw-text">{{ . }}</p>
+      {{ end }}
     </div>
     <div>
       {{ range .Translators }}
@@ -41,7 +43,9 @@
           {{ with .Translator }}
             <h2 class="translator-name">{{ .Name }}</h2>
           {{ end }}
-          <p class="translator-text">{{ .TranslatedText }}</p>
+          {{ range ( SplitTextIntoArray .TranslatedText) }}
+            <p class="translator-text">{{ . }}</p>
+          {{ end }}
         </div>
       {{ end }}
     </div>
