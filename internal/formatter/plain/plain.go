@@ -12,12 +12,12 @@ func Format(res res.Res) string {
 	}
 
 	r := ""
-	r = r + "Raw:\n"
+	r = r + "Raw:\n\n"
 	r = r + indent(res.Text) + "\n"
 
 	for _, translator := range res.Translators {
 		r = r + "\n"
-		r = r + translator.Translator.Name + ":\n"
+		r = r + translator.Translator.Name + ":\n\n"
 		if translator.Code != 0 {
 			r = r + indent(translator.Error) + "\n"
 		} else {

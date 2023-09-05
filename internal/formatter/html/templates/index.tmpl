@@ -3,36 +3,45 @@
     <meta charset="UTF-8">
     <style>
       html {
-        font-family: Roboto,arial,sans-serif;
+        font-family: arial,sans-serif;
       }
-      .translator {
-        margin: 12px 0;
-      }
-      .name {
+      h2 {
         padding: 2px 0;
         margin: 6px 0;
-        border-color: purple;
         border-style: solid;
         border-width: 0 0 2px 0;
-        color: purple;
         font-size: 14px;
         font-weight: 600;
       }
-      .translated-text {
+      p {
         margin: 0;
         font-size: 12px;
         font-weight: 400;
       }
+      .raw {
+        margin: 12px 0;
+      }
+      .translator {
+        margin: 12px 0;
+      }
+      .translator-name {
+        border-color: purple;
+        color: purple;
+      }
     </style>
   </header>
   <body>
+    <div class="raw">
+      <h2 class="raw-name">Raw:</h2>
+      <p class="raw-text">{{ .Text }}</p>
+    </div>
     <div>
       {{ range .Translators }}
         <div class="translator">
           {{ with .Translator }}
-            <h2 class="name">{{ .Name }}</h2>
+            <h2 class="translator-name">{{ .Name }}</h2>
           {{ end }}
-          <p class="translated-text">{{ .TranslatedText }}</p>
+          <p class="translator-text">{{ .TranslatedText }}</p>
         </div>
       {{ end }}
     </div>

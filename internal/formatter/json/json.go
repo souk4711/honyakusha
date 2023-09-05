@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	TMPL = `{
+	TMPL_ERROR = `{
     "code": 1,
     "error": "%s",
     "text": "",
@@ -18,7 +18,7 @@ const (
 
 func Format(res res.Res) string {
 	if data, err := json.MarshalIndent(&res, "", "    "); err != nil {
-		return fmt.Sprintf(TMPL, res.Error) + "\n"
+		return fmt.Sprintf(TMPL_ERROR, res.Error) + "\n"
 	} else {
 		return string(data) + "\n"
 	}
