@@ -26,16 +26,16 @@ func buildResultFromResp(resp *resty.Response) res.ResTranslator {
 		return res.NewResTranslatorFailure("ApiError: " + resp.Status())
 	}
 
-	if len(resp.Body()) == 0 || resp.Body()[0] != '[' {
-		return res.NewResTranslatorFailure("ApiError: " + string(resp.Body()))
+	if len(resp.Body()) == 0 {
+		return res.NewResTranslatorFailure("ApiError: No result")
 	}
+
+	if resp.Body()[0] != '[' {
+		return res.NewResTranslatorFailure("ApiError: " + string(resp.Body()))
+  }
 
 	if err := json.Unmarshal(resp.Body(), &r); err != nil {
 		return res.NewResTranslatorFailure("ApiError: " + err.Error())
-	}
-
-	if len(r) == 0 {
-		return res.NewResTranslatorFailure("ApiError: No result")
 	}
 
 	translations := r[0].Translations
