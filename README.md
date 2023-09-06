@@ -19,7 +19,7 @@ $ go install github.com/souk4711/honyakusha@latest
 
 ## Usage
 
-Create a configuration in the XDG config directory or current working directory:
+Create a configuration file in the XDG config directory or current working directory:
 
 ```sh
 $ honyakusha init
@@ -42,6 +42,13 @@ Bing Translator:
 
     A life that is not examined is not worth living.
 ```
+
+
+## Language Code
+
+The `source` and `target` fields in the configuration file should follow the ISO 6359 format, e.g. `ja`,
+`zh-CN`. All available language codes can be found in the [lang.go](./internal/lang/lang.go) file. Note
+that some language codes may not work if the translation services do not support them.
 
 
 ## Translation Services
