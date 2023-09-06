@@ -19,7 +19,7 @@ const (
 var (
 	version = Version{
 		Name:      "Honyakusha",
-		Number:    "0.0.1",
+		Number:    "0.1.0",
 		GoVersion: runtime.Version(),
 		OS:        runtime.GOOS,
 		ARCH:      runtime.GOARCH,
