@@ -28,6 +28,9 @@
         border-color: purple;
         color: purple;
       }
+      .has-error {
+        color: crimson;
+      }
     </style>
   </header>
   <body>
@@ -43,8 +46,12 @@
           {{ with .Translator }}
             <h2 class="translator-name">{{ .Name }}</h2>
           {{ end }}
-          {{ range ( SplitTextIntoArray .TranslatedText) }}
-            <p class="translator-text">{{ . }}</p>
+          {{ if eq .Code 0 }}
+            {{ range ( SplitTextIntoArray .TranslatedText) }}
+              <p class="translator-text">{{ . }}</p>
+            {{ end }}
+          {{ else }}
+            <p class="translator-text has-error">{{ .Error }}</p>
           {{ end }}
         </div>
       {{ end }}
