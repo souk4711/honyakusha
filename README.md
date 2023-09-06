@@ -13,7 +13,7 @@ find the minimum required version of Go in the go.mod file.
 You can then install the latest release globally by running:
 
 ```sh
-$ go install github.com/souk4711/honyakusha@latest
+$ go install github.com/souk4711/honyakusha/cmd/honyakusha@latest
 ```
 
 
