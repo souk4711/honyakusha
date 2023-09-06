@@ -46,7 +46,7 @@ Bing Translator:
 
 ## Language Code
 
-The `source` and `target` fields in the configuration file should follow the ISO 6359 format, e.g. `ja`,
+The `source` and `target` fields in the configuration file should follow the ISO 639 format, e.g. `ja`,
 `zh-CN`. All available language codes can be found in the [lang.go](./internal/lang/lang.go) file. Note
 that some language codes may not work if the translation services do not support them.
 
