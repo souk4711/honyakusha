@@ -57,7 +57,7 @@ that some language codes may not work if the translation services do not support
 |--------------------|--------------------------------------|--------------
 | bing               | [Bing Translator][bing]              | -           |
 | google             | [Google Translate][google]           | -           |
-| deepl-api          | [DeepL][deepl-api]                   | api-key     |
+| deepl-api          | [DeepL Translate][deepl-api]         | api-key     |
 | libretranslate-api | [LibreTranslate][libretranslate-api] | api-key     |
 
 
@@ -80,4 +80,5 @@ available as open source under the terms of the [MIT License](https://opensource
 
 [bing]:https://www.bing.com/translator
 [google]:https://translate.google.com/
+[deepl-api]:https://www.deepl.com/
 [libretranslate-api]:https://libretranslate.com/
