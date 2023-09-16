@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"log"
+	"os"
 	"strconv"
 
 	"github.com/spf13/cobra"
@@ -10,11 +11,18 @@ import (
 )
 
 func Execute(gitCommit string, builtTime string) {
+	setDebugMode()
 	setHonyakushaVersion(gitCommit, builtTime)
 
 	var command = newHonyakushaCommand()
 	if err := command.Execute(); err != nil {
 		log.Fatal(err)
+	}
+}
+
+func setDebugMode() {
+	if os.Getenv("DEBUG") != "" {
+		internal.EnableDebugMode()
 	}
 }
 
