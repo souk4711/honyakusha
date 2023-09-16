@@ -34,7 +34,7 @@ func newInitCommand() *cobra.Command {
 		},
 	}
 
-	initCommand.Flags().BoolVarP(&inXDG, "xdg", "", false, "Create configuration file in XDG directory")
+	initCommand.Flags().BoolVarP(&inXDG, "xdg", "", false, "create configuration file in XDG directory")
 	return initCommand
 }
 

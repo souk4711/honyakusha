@@ -2,6 +2,7 @@ package trans
 
 import (
 	"fmt"
+	"slices"
 
 	"github.com/souk4711/honyakusha/internal/conf"
 	"github.com/souk4711/honyakusha/internal/res"
@@ -59,9 +60,17 @@ func (t *Translator) TranslateText(text string, source string, target string) re
 	return r
 }
 
-func availableTranslators(c conf.ConfTranslators) []Translator {
+func availableTranslators(c conf.ConfTranslators, specifiedTranslators []string) []Translator {
 	translators := []Translator{}
+
 	addTranslatorIfEnabled := func(ct conf.ConfTranslator, code string) {
+		if len(specifiedTranslators) != 0 {
+			if slices.Contains(specifiedTranslators, code) {
+				translators = append(translators, Translator{Code: code, Conf: ct})
+			}
+			return
+		}
+
 		if ct.Enabled {
 			translators = append(translators, Translator{Code: code, Conf: ct})
 		}

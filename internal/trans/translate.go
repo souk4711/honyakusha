@@ -5,7 +5,7 @@ import (
 	"github.com/souk4711/honyakusha/internal/res"
 )
 
-func Translate(text string, source string, target string, c conf.Conf) res.Res {
+func Translate(text string, source string, target string, specifiedTranslators []string, c conf.Conf) res.Res {
 	if source == "" {
 		source = c.Translate.Source
 	}
@@ -16,7 +16,7 @@ func Translate(text string, source string, target string, c conf.Conf) res.Res {
 	resChannel := make(chan res.ResTranslator)
 	defer close(resChannel)
 
-	translators := availableTranslators(c.Translators)
+	translators := availableTranslators(c.Translators, specifiedTranslators)
 	for _, translator := range translators {
 		go func(translator Translator) {
 			r := translator.TranslateText(text, source, target)
