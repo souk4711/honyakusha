@@ -19,11 +19,11 @@ $ go install github.com/souk4711/honyakusha/cmd/honyakusha@latest
 
 ## Usage
 
-Create a configuration file in the XDG config directory or current working directory:
+Create a configuration file in the XDG config directory:
 
 ```sh
-$ honyakusha init
-Create a config file in ./honyakusha.toml
+$ honyakusha init --xdg
+Create a config file in $HOME/.config/honyakusha.toml
 ```
 
 And then execute:
