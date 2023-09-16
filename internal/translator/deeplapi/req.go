@@ -49,6 +49,8 @@ func buildReqBodySource(source string) string {
 	l := lang.Query(source)
 	if l.Code == "" {
 		return ""
+	} else if data[source] != "" {
+		return data[source]
 	} else {
 		return strings.ToUpper(l.Code_639_1())
 	}
@@ -61,5 +63,4 @@ func buildReqBodyTarget(target string) string {
 	} else {
 		return strings.ToUpper(l.Code)
 	}
-
 }

@@ -14,7 +14,7 @@ type Resp struct {
 
 type RespTranslation struct {
 	DetectedSourceLanguage string `json:"detected_source_language"`
-  Text string `json:"text"`
+	Text                   string `json:"text"`
 }
 
 func buildResultFromResp(resp *resty.Response) res.ResTranslator {
