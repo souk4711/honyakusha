@@ -4,16 +4,16 @@ target = "en-US"
 
 [translators.bing]
 enabled = true
-url = ""
-proxy = ""
+# uri = "https://www.bing.com"
+# proxy = ""
 
 [translators.google]
 enabled = true
-url = ""
-proxy = ""
+# uri = "https://translate.google.com"
+# proxy = ""
 
 [translators.libretranslate-api]
 enabled = false
-url = ""
-proxy = ""
-api-key = ""
+# uri = "https://libretranslate.com"
+# proxy = ""
+# api-key = ""

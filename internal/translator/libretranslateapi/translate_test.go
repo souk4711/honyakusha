@@ -14,7 +14,7 @@ func TestTranslateText_Success(t *testing.T) {
 	recorder, _ := recorder.New("fixtures/TestTranslateText_Success")
 	defer func() { _ = recorder.Stop() }()
 
-	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co/translate"}
+	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co"}
 	client := translator.BuildClient(conf)
 	client.SetTransport(recorder)
 	res := translator.MakeRequest(client,
@@ -44,7 +44,7 @@ func TestTranslateText_SourceUnsupported(t *testing.T) {
 	recorder, _ := recorder.New("fixtures/TestTranslateText_SourceUnsupported")
 	defer func() { _ = recorder.Stop() }()
 
-	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co/translate"}
+	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co"}
 	client := translator.BuildClient(conf)
 	client.SetTransport(recorder)
 	res := translator.MakeRequest(client,
@@ -59,7 +59,7 @@ func TestTranslateText_TargetUnsupported(t *testing.T) {
 	recorder, _ := recorder.New("fixtures/TestTranslateText_TargetUnsupported")
 	defer func() { _ = recorder.Stop() }()
 
-	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co/translate"}
+	conf := conf.ConfTranslator{URI: "https://translate.terraprint.co"}
 	client := translator.BuildClient(conf)
 	client.SetTransport(recorder)
 	res := translator.MakeRequest(client,

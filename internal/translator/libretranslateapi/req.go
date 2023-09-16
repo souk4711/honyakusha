@@ -9,7 +9,7 @@ func buildReqURL(conf conf.ConfTranslator) string {
 	if conf.URI == "" {
 		return "https://libretranslate.com/translate"
 	} else {
-		return conf.URI
+		return conf.URI + "/translate"
 	}
 }
 

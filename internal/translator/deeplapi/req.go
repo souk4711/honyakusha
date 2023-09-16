@@ -17,7 +17,7 @@ func buildReqURL(conf conf.ConfTranslator) string {
 	if conf.URI == "" {
 		return "https://api-free.deepl.com/v2/translate"
 	} else {
-		return conf.URI
+		return conf.URI + "/v2/translate"
 	}
 }
 
