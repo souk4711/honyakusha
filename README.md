@@ -57,6 +57,7 @@ that some language codes may not work if the translation services do not support
 |--------------------|--------------------------------------|--------------
 | bing               | [Bing Translator][bing]              | -           |
 | google             | [Google Translate][google]           | -           |
+| deepl-api          | [DeepL][deepl-api]                   | api-key     |
 | libretranslate-api | [LibreTranslate][libretranslate-api] | api-key     |
 
 

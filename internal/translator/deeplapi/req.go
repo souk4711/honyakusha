@@ -7,6 +7,13 @@ import (
 	"github.com/souk4711/honyakusha/internal/lang"
 )
 
+var (
+	data = map[string]string{
+		"zh-CN": "ZH",
+		"zh-TW": "ZH",
+	}
+)
+
 type Req struct {
 	Text   []string `json:"text"`
 	Source string   `json:"source_lang"`
@@ -49,5 +56,10 @@ func buildReqBodySource(source string) string {
 
 func buildReqBodyTarget(target string) string {
 	l := lang.Query(target)
-	return strings.ToUpper(l.Code)
+	if data[target] != "" {
+		return data[target]
+	} else {
+		return strings.ToUpper(l.Code)
+	}
+
 }

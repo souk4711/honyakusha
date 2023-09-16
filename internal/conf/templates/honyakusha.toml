@@ -12,6 +12,12 @@ enabled = true
 # uri = "https://translate.google.com"
 # proxy = ""
 
+[translators.deepl-api]
+enabled = false
+# uri = "https://api-free.deepl.com"
+# proxy = ""
+# api-key = ""
+
 [translators.libretranslate-api]
 enabled = false
 # uri = "https://libretranslate.com"
