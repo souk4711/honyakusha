@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -19,6 +20,12 @@ func newTransCommand() *cobra.Command {
 	var transCommand = &cobra.Command{
 		Use:   "trans TEXT",
 		Short: "Translate text via translation services",
+		Args: func(cmd *cobra.Command, args []string) error {
+			if len(strings.Join(args, " ")) == 0 {
+				return errors.New("missing args: requires TEXT")
+			}
+			return nil
+		},
 		Run: func(cmd *cobra.Command, args []string) {
 			c := conf.Load()
 			res := trans.Translate(strings.Join(args, " "), Source, Target, specifiedTranslators, c)
