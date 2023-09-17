@@ -3,7 +3,7 @@ package lang
 import (
 	"strings"
 
-	"github.com/jeandeaual/go-locale"
+	"github.com/Xuanwo/go-locale"
 )
 
 var (
@@ -201,11 +201,12 @@ func (l *Lang) Code_639_1() string {
 }
 
 func AutoDetect() string {
-	code, err := locale.GetLocale()
+	tag, err := locale.Detect()
 	if err != nil {
 		return ""
 	}
 
+	code := tag.String()
 	if _, ok := data[code]; ok {
 		return code
 	}
