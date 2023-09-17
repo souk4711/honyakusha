@@ -2,6 +2,7 @@ package trans
 
 import (
 	"github.com/souk4711/honyakusha/internal/conf"
+	"github.com/souk4711/honyakusha/internal/lang"
 	"github.com/souk4711/honyakusha/internal/res"
 )
 
@@ -9,8 +10,12 @@ func Translate(text string, source string, target string, specifiedTranslators [
 	if source == "" {
 		source = c.Translate.Source
 	}
+
 	if target == "" {
 		target = c.Translate.Target
+	}
+	if target == "" {
+		target = lang.AutoDetect()
 	}
 
 	resChannel := make(chan res.ResTranslator)

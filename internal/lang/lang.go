@@ -1,6 +1,10 @@
 package lang
 
-import "strings"
+import (
+	"strings"
+
+	"github.com/jeandeaual/go-locale"
+)
 
 var (
 	// https://github.com/soimort/translate-shell/wiki/Languages
@@ -194,6 +198,25 @@ func (l *Lang) Code_639_1() string {
 	} else {
 		return l.Code[0:idx]
 	}
+}
+
+func AutoDetect() string {
+	code, err := locale.GetLocale()
+	if err != nil {
+		return ""
+	}
+
+	if _, ok := data[code]; ok {
+		return code
+	}
+
+	if idx := strings.Index(code, "-"); idx != -1 {
+		if _, ok := data[code[0:idx]]; ok {
+			return code[0:idx]
+		}
+	}
+
+	return ""
 }
 
 func Query(code string) Lang {

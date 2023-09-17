@@ -1,6 +1,7 @@
 package lang_test
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -23,6 +24,20 @@ func TestCode_639_1(t *testing.T) {
 
 	r = lang.Query("")
 	assert.Equal(t, "", r.Code_639_1())
+}
+
+func TestAutoDetect(t *testing.T) {
+	os.Setenv("LANGUAGE", "en_US")
+	r := lang.AutoDetect()
+	assert.Equal(t, "en-US", r)
+
+	os.Setenv("LANGUAGE", "zh_CN")
+	r = lang.AutoDetect()
+	assert.Equal(t, "zh-CN", r)
+
+	os.Setenv("LANGUAGE", "ja_JP")
+	r = lang.AutoDetect()
+	assert.Equal(t, "ja", r)
 }
 
 func TestQuery(t *testing.T) {
