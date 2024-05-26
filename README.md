@@ -5,6 +5,10 @@ Translate text using a variety of translation services.
 
 ## Installation
 
+### From Binaries
+
+Go to [releases page](https://github.com/souk4711/honyakusha/releases) download latest release binary file.
+
 ### From Source
 
 Ensure that you have a supported version of Go properly installed and setup. You can
@@ -21,34 +25,29 @@ $ go install github.com/souk4711/honyakusha/cmd/honyakusha@latest
 
 Create a configuration file in the XDG config directory:
 
-```sh
+```console
 $ honyakusha init --xdg
 Create a config file in $HOME/.config/honyakusha.toml
 ```
 
 And then execute:
 
-```sh
-$ honyakusha trans 吟味されざる生に、生きる価値なし。
+```console
+$ honyakusha trans Hello, World
 Raw:
 
-    吟味されざる生に、生きる価値なし。
+    Hello, World
 
 Google Translate:
 
-    A life that is not examined is not worth living.
+    こんにちは世界
 
 Bing Translator:
 
-    A life that is not examined is not worth living.
+    ハローワールド
 ```
 
-
-## Language Code
-
-The `source` and `target` fields in the configuration file should follow the ISO 639 format, e.g. `ja`,
-`zh-CN`. All available language codes can be found in the [lang.go](./internal/lang/lang.go) file. Note
-that some language codes may not work if the translation services do not support them.
+**NOTE: You can edit the config file to change the target language if it is not Japanese.**
 
 
 ## Translation Services
@@ -59,13 +58,6 @@ that some language codes may not work if the translation services do not support
 | google             | [Google Translate][google]           | -           |
 | deepl-api          | [DeepL Translate][deepl-api]         | api-key     |
 | libretranslate-api | [LibreTranslate][libretranslate-api] | api-key     |
-
-
-## Formatter
-
-* html
-* json
-* plain
 
 
 ## Howto

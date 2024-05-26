@@ -1,6 +1,12 @@
+# The source and target fields should follow the ISO 639 format, e.g. ko, ja,
+# zh-CN, zh-TW. All available language codes can be found in the lang.go file:
+#
+#   https://github.com/souk4711/honyakusha/blob/main/internal/lang/lang.go
+#
+# Note: some language codes may not work if the translation services do not support them.
 [translate]
 source = ""
-target = ""
+target = "ja"
 
 [translators.bing]
 enabled = true
